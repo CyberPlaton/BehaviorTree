@@ -1,0 +1,22 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(498,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  main.cpp
+C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\BTCommon.h(39,25): warning C4244: 'return': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\BTCommon.h(54,25): warning C4244: 'return': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\BTCommon.h(69,16): warning C4244: 'return': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\BTRandomSequence.h(39,16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\BTBlackboard.h(65): warning C4715: 'BTBlackboard::getData<enum BTNodeResult>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\Any.h(54): warning C4715: 'Any::as<enum BTNodeResult>': not all control paths return a value
+  BehaviourTree.vcxproj -> C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviorTree\bin\Debug-x64\BehaviourTree\BehaviourTree.exe
