@@ -11,10 +11,19 @@ public:
 
 	}
 
-	~BTAction()
+	virtual ~BTAction()
 	{
 	}
 
+	bool hasBlackboard() override
+	{
+		return false;
+	}
+
+	BTBlackboard* getBlackboard() override
+	{
+		return nullptr;
+	}
 
 	virtual BTNodeResult command()
 	{

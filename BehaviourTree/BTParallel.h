@@ -20,8 +20,18 @@ public:
 	BTParallel(std::string name, Policy success, Policy fail) : m_Name(name), m_FailPolicy(fail), m_SuccessPolicy(success) {}
 	BTParallel(std::string name, int success, int fail) : m_Name(name), m_FailPolicy(BTParallel::Policy(fail)), m_SuccessPolicy(BTParallel::Policy(success)) {}
 
-	~BTParallel()
+	virtual ~BTParallel()
 	{
+	}
+
+	bool hasBlackboard() override
+	{
+		return false;
+	}
+
+	BTBlackboard* getBlackboard() override
+	{
+		return nullptr;
 	}
 
 	BTNodeResult tick() override

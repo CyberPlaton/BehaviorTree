@@ -11,8 +11,18 @@ public:
 
 	}
 
-	~BTDecorator()
+	virtual ~BTDecorator()
 	{
+	}
+
+	bool hasBlackboard() override
+	{
+		return false;
+	}
+
+	BTBlackboard* getBlackboard() override
+	{
+		return nullptr;
 	}
 
 	virtual BTNodeResult tick() { return INVALID; }

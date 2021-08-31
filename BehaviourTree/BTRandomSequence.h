@@ -13,9 +13,21 @@ public:
 
 	}
 
-	~BTRandomSequence()
+	virtual ~BTRandomSequence()
 	{
 	}
+
+
+	bool hasBlackboard() override
+	{
+		return false;
+	}
+
+	BTBlackboard* getBlackboard() override
+	{
+		return nullptr;
+	}
+
 
 	BTNodeResult tick() override
 	{

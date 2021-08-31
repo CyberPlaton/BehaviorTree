@@ -2,6 +2,7 @@
 
 #include "BTCommon.h"
 
+class BTBlackboard;
 
 enum BTNodeResult
 {
@@ -31,6 +32,8 @@ public:
 	virtual void addChild(BTNode*) = 0;
 	virtual void removeChild(std::string) = 0;
 	virtual void removeFirstChild() = 0;
+	virtual bool hasBlackboard() = 0;
+	virtual BTBlackboard* getBlackboard() = 0;
 	virtual void freeMemory() = 0;
 
 	/*

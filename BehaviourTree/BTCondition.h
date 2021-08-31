@@ -11,8 +11,18 @@ public:
 
 	}
 
-	~BTCondition()
+	virtual ~BTCondition()
 	{
+	}
+
+	bool hasBlackboard() override
+	{
+		return false;
+	}
+
+	BTBlackboard* getBlackboard() override
+	{
+		return nullptr;
 	}
 
 	virtual BTNodeResult checkCondition()

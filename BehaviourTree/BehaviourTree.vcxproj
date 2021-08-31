@@ -101,6 +101,7 @@
     <ClInclude Include="BTRandomSequence.h" />
     <ClInclude Include="BTSequence.h" />
     <ClInclude Include="BTTimer.h" />
+    <ClInclude Include="StoreValueNode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Any.cpp" />
