@@ -17,6 +17,14 @@ public:
 	
 	~BTBlackboard()
 	{
+		/*
+		* Blackboard is responsible for freeing memory used by its data storage.
+		*/
+		while (!m_Data.empty())
+		{
+			m_Data.erase(m_Data.begin());
+		}
+
 		m_Data.clear();
 		m_Name.clear();
 		delete m_Mutex;
