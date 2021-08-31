@@ -13,7 +13,6 @@ public:
 
 	~BTAction()
 	{
-		m_Name.clear();
 	}
 
 
@@ -66,12 +65,25 @@ public:
 		return;
 	}
 
+	void removeFirstChild() override
+	{
+		return;
+	}
 
 	std::string name() override
 	{
 		return m_Name;
 	}
 
+	void freeMemory() override
+	{
+		using namespace std;
+		cout << "Deleting Node \"" << m_Name << "\"" << endl;
+
+		m_Name.clear();
+		m_Parent = 0;
+		delete this;
+	}
 
 private:
 

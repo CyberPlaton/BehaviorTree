@@ -4,16 +4,33 @@
 #include "BTBlackboard.h"
 #include "Any.h"
 
+class BTFactory;
+
 class BehaviorTree
 {
+	friend class BTFactory;
+
 public:
 	BehaviorTree(std::string name) : m_Name(name) {}
 
 	~BehaviorTree()
 	{
-		// Delete root
-		delete m_Root;
+		/*
+		* Remove the tree structure.
+		* Where the behavior tree is responsible for freeing memory used by its nodes.
+		*/
+		while (m_TreeNodes.size() > 0)
+		{
+			BTNode* node = m_TreeNodes[m_TreeNodes.size() - 1];
+			node->freeMemory();
+			m_TreeNodes.pop_back();
+		}
+
 		m_Root = 0;
+		m_CurrentlyExecuting = 0;
+
+		m_Name.clear();
+		m_TreeNodes.clear();
 	}
 
 	BTNodeResult update()
@@ -28,6 +45,8 @@ public:
 
 
 private:
+
+	std::vector<BTNode*> m_TreeNodes;
 
 	BTNode* m_CurrentlyExecuting = nullptr;
 

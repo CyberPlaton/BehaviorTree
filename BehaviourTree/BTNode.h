@@ -15,8 +15,6 @@ class BTNode
 {
 public:
 
-	virtual ~BTNode(){}
-
 	/*
 	* Base function for execution on each update tick.
 	*/
@@ -32,7 +30,8 @@ public:
 	virtual std::map<int, BTNode*>  children() = 0;
 	virtual void addChild(BTNode*) = 0;
 	virtual void removeChild(std::string) = 0;
-
+	virtual void removeFirstChild() = 0;
+	virtual void freeMemory() = 0;
 
 	/*
 	* General Node information.

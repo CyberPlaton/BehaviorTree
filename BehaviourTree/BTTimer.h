@@ -32,10 +32,10 @@ public:
 
 	~BTTimer()
 	{
-		m_Timer.~HRTimer();
 		m_Condition = 0;
-		m_Policy = (Policy)-1;
-		m_Granularity = (Granularity)-1;
+		m_Policy = (Policy)0;
+		m_Granularity = (Granularity)0;
+		delete this;
 	}
 
 	BTNodeResult checkCondition() override final

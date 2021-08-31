@@ -15,11 +15,22 @@ void testing_run()
 {
 	using namespace std;
 
-	BTFactory factory("Main Testing Tree");
+	BTFactory* factory = new BTFactory("Main Testing Tree");
 
-	BTBlackboard blackboard("Main Testing Blackboard");
+	
+	BTBlackboard* blackboard = new BTBlackboard("Main Testing Blackboard");
 
-	BehaviorTree* tree = factory.add<BTSequence>("Begin sequence")
+	BehaviorTree* tree = factory->add<BTSequence>("Begin sequence")
+		.add<BTParallel>("Parallel Timer Execution", BTParallel::Policy::Require_All, BTParallel::Policy::Require_One)
+		.add<BTTimer>("First Timer", BTTimer::Granularity::Milliseconds, BTTimer::Policy::Greater, 100.0)
+		.end()
+		.add<BTTimer>("Second Timer", BTTimer::Granularity::Milliseconds, BTTimer::Policy::Smaller, 200.0)
+		.end()
+		.end()
+		.build();
+
+	/*
+	BehaviorTree* tree = factory->add<BTSequence>("Begin sequence")
 		.add<BTParallel>("Parallel Timer Execution", BTParallel::Policy::Require_All, BTParallel::Policy::Require_One)
 		.add<BTTimer>("First Timer", BTTimer::Granularity::Milliseconds, BTTimer::Policy::Greater, 100.0)
 		.end()
@@ -33,12 +44,12 @@ void testing_run()
 	BTNodeResult result = BTNodeResult::FAILURE;
 	while (tree->update() == BTNodeResult::FAILURE)
 	{
-		blackboard.set<int>("Time", ++i, "int");
-		blackboard.set<BTNodeResult>("Timer Result", result, "bt_node_result");
+		blackboard->set<int>("Time", ++i, "int");
+		blackboard->set<BTNodeResult>("Timer Result", result, "bt_node_result");
 
 		cout << "Result: ";
 
-		switch (blackboard.getData<BTNodeResult>("Timer Result"))
+		switch (blackboard->getData<BTNodeResult>("Timer Result"))
 		{
 		case BTNodeResult::FAILURE:
 			cout << "Failure" << endl;
@@ -62,10 +73,10 @@ void testing_run()
 
 	result = BTNodeResult::SUCCESS;
 
-	blackboard.set<BTNodeResult>("Timer Result", result, "bt_node_result");
+	blackboard->set<BTNodeResult>("Timer Result", result, "bt_node_result");
 
 	cout << "Result: ";
-	switch (blackboard.getData<BTNodeResult>("Timer Result"))
+	switch (blackboard->getData<BTNodeResult>("Timer Result"))
 	{
 	case BTNodeResult::FAILURE:
 		cout << "Failure" << endl;
@@ -86,9 +97,14 @@ void testing_run()
 	}
 
 
-	//blackboard.~BTBlackboard();
-	//factory.~BTFactory();
-	//tree->~BehaviorTree();
+	delete blackboard;
+	delete factory;
+	delete tree;
+	*/
+
+	delete factory;
+	delete blackboard;
+	delete tree;
 }
 
 

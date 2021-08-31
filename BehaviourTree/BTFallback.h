@@ -14,13 +14,6 @@ public:
 
 	~BTFallback()
 	{
-		for (auto& kid : m_Children)
-		{
-			// Delete nodes
-			kid.second->~BTNode();
-		}
-
-		m_Name.clear();
 	}
 
 	BTNodeResult tick() override
@@ -101,12 +94,33 @@ public:
 		}
 	}
 
+	void removeFirstChild() override
+	{
+		if (!m_Children.empty())
+		{
+			auto it = m_Children.begin();
+			delete it->second;
+
+			m_Children.erase(m_Children.begin());
+		}
+	}
 
 	std::string name() override
 	{
 		return m_Name;
 	}
 
+
+	void freeMemory() override
+	{
+		using namespace std;
+		cout << "Deleting Node \"" << m_Name << "\"" << endl;
+
+		m_Children.clear();
+		m_Name.clear();
+		m_Parent = 0;
+		delete this;
+	}
 
 private:
 

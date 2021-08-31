@@ -14,7 +14,7 @@ public:
 	{
 		last_parent = 0;
 		m_Tree = 0;
-		memset(&has_root, 0, sizeof(has_root));
+		has_root = false;
 	}
 
 	/*
@@ -24,11 +24,9 @@ public:
 	template < typename NodeType, class... Args >
 	BTFactory& add(const std::string& node_name, Args... args)
 	{
-		using namespace std;
-
 		NodeType* node = new NodeType(node_name, args...);
 
-		if (has_root == false)
+		if (!has_root)
 		{
 			m_Tree->setRoot(node);
 			has_root = true;
@@ -39,6 +37,8 @@ public:
 			last_parent->addChild(node);
 		}
 
+		m_Tree->m_TreeNodes.push_back(node);
+
 		return *this;
 	}
 
@@ -48,9 +48,10 @@ public:
 	*/
 	BTFactory& end()
 	{
-		if (last_parent->parent())
+		BTNode* p = last_parent->parent();
+		if (p)
 		{
-			last_parent = last_parent->parent();
+			last_parent = p;
 		}
 
 		return *this;

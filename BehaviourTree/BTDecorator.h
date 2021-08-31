@@ -13,13 +13,6 @@ public:
 
 	~BTDecorator()
 	{
-		if (m_Child)
-		{
-			m_Child->~BTNode();
-			m_Child = 0;
-		}
-
-		m_Name.clear();
 	}
 
 	virtual BTNodeResult tick() { return INVALID; }
@@ -75,11 +68,29 @@ public:
 		}
 	}
 
+	void removeFirstChild() override
+	{
+		if (m_Child)
+		{
+			delete m_Child;
+			m_Child = 0;
+		}
+	}
+
 	std::string name() override
 	{
 		return m_Name;
 	}
 
+	void freeMemory() override
+	{
+		using namespace std;
+		cout << "Deleting Node \"" << m_Name << "\"" << endl;
+
+		m_Name.clear();
+		m_Parent = 0;
+		delete this;
+	}
 
 private:
 

@@ -16,7 +16,5 @@ C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\BTCo
           [
               _Rep=__int64
           ]
-C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\BTRandomSequence.h(39,16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\BTBlackboard.h(65): warning C4715: 'BTBlackboard::getData<enum BTNodeResult>': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\Any.h(54): warning C4715: 'Any::as<enum BTNodeResult>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviourTree\BTRandomSequence.h(31,16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   BehaviourTree.vcxproj -> C:\Users\Bogdan Strohonov\Desktop\BehaviourTree\BehaviourTree\BehaviorTree\bin\Debug-x64\BehaviourTree\BehaviourTree.exe
