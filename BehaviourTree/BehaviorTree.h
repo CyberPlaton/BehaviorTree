@@ -12,7 +12,6 @@ class BehaviorTree
 
 public:
 	BehaviorTree(std::string name) : m_Name(name) {}
-
 	~BehaviorTree()
 	{
 		/*

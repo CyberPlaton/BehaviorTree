@@ -9,7 +9,6 @@ class BTFactory
 public:
 	BTFactory(const std::string& tree_name) : m_Tree(new BehaviorTree(tree_name)) {}
 
-
 	~BTFactory()
 	{
 		last_parent = 0;

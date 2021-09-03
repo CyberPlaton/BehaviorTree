@@ -89,5 +89,8 @@
     <ClCompile Include="Any.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BTFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
