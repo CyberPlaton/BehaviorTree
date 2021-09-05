@@ -19,6 +19,9 @@
     <Filter Include="Header Files\CustomNodes">
       <UniqueIdentifier>{4744ba90-e894-4f49-95ac-ba75e4ea67cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\XML">
+      <UniqueIdentifier>{a90d975d-b617-46ad-b658-19f9c45f7e7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BehaviorTree.h">
@@ -75,6 +78,9 @@
     <ClInclude Include="StoreValueNode.h">
       <Filter>Header Files\CustomNodes</Filter>
     </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Header Files\XML</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BTBlackboard.cpp">
@@ -91,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="BTFactory.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Header Files\XML</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

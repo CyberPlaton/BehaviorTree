@@ -16,6 +16,10 @@ public:
 		has_root = false;
 	}
 
+
+	static bool exportBehaviorTree(BehaviorTree* tree);
+
+
 	/*
 	* Add a node as child to the current worked on node.
 	* The Arguments must match the required arguments for the constructor.
@@ -23,17 +27,26 @@ public:
 	template < typename NodeType, class... Args >
 	BTFactory& add(const std::string& node_name, Args... args)
 	{
+		using namespace std;
+
 		NodeType* node = new NodeType(node_name, args...);
 
 		if (!has_root)
 		{
+			cout << "Create Root Node: " << node->name() << endl;
+
 			m_Tree->setRoot(node);
 			has_root = true;
 			last_parent = node;
 		}
 		else
 		{
+			cout << "Create Node: " << node->name();
+			cout << " with Parent: " << last_parent->name() << endl;
+
 			last_parent->addChild(node);
+
+			last_parent = node;
 		}
 
 		m_Tree->m_TreeNodes.push_back(node);
@@ -47,10 +60,18 @@ public:
 	*/
 	BTFactory& end()
 	{
+		using namespace std;
+		cout << "Getting Last Parent: ";
+
 		BTNode* p = last_parent->parent();
-		if (p)
+		if (p != nullptr)
 		{
+			cout << p->name() << endl;
 			last_parent = p;
+		}
+		else
+		{
+			cout << " none" << endl;
 		}
 
 		return *this;
@@ -72,4 +93,8 @@ private:
 	BehaviorTree* m_Tree = nullptr;
 
 	bool has_root = false;
+
+
+private:
+
 };

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "tinyxml2.h"
+
 #include <string>
 #include <vector>
 #include <map>
@@ -10,6 +12,7 @@
 #include <any>
 #include <chrono>
 #include <iostream>
+#include <queue>
 
 
 class HRTimer {

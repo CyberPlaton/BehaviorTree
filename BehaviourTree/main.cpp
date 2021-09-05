@@ -57,10 +57,13 @@ void sec_testing_run()
 		.end()
 		.add<BTTimer>("Second Timer", BTTimer::Granularity::Seconds, BTTimer::Policy::Smaller, 5.0)
 		.end()
-		.add<StoreValueNode>("StoreValueNode", blackboard)
+		.add<StoreValueNode>("StoreValueNode")
 		.end()
 		.end()
 		.build();
+
+
+	tree->findNode("StoreValueNode")->setBlackboard(blackboard);
 
 
 	delete factory;
@@ -78,6 +81,38 @@ void sec_testing_run()
 }
 
 
+BehaviorTree* create_basic_test_tree()
+{
+	BTFactory* factory = new BTFactory("TestTree");
+
+	BehaviorTree* tree = factory->add<BTSequence>("Root")
+									.add<BTFallback>("FirstChild")
+										.end()
+									.add<BTTimer>("ThirdChild", BTTimer::Granularity::Seconds, BTTimer::Policy::Greater, 3.0)
+										.end()
+									.add<BTSequence>("SecondChild")
+										.add<BTSequence>("Sequence")
+											.add<BTFallback>("Fallback")
+												.add<BTParallel>("Parallel", BTParallel::Policy::Require_All, BTParallel::Policy::Require_One)
+													.add<BTAction>("FirstAction")
+														.end()
+													.add<BTAction>("SecondAction")
+														.end()
+													.add<BTAction>("ThirdAction")
+														.end()
+													.add<StoreValueNode>("StoreValueAction")
+								.build();
+
+
+	BTBlackboard* blackboard = new BTBlackboard("Main Testing Blackboard");
+	tree->findNode("StoreValueAction")->setBlackboard(blackboard);
+
+
+	delete factory;
+	return tree;
+}
+
+
 BehaviorTree* create_basic_timer_tree()
 {
 	BTFactory* factory = new BTFactory("Timer Tree");
@@ -89,6 +124,7 @@ BehaviorTree* create_basic_timer_tree()
 	delete factory;
 	return tree;
 }
+
 
 
 void third_testing_run()
@@ -111,6 +147,15 @@ void third_testing_run()
 }
 
 
+
+void fourth_testing_run()
+{
+	BehaviorTree* tree = create_basic_test_tree();
+	BTFactory::exportBehaviorTree(tree);
+	delete tree;
+}
+
+
 int main()
 {
 	// Define some tree with basic and blackboard.
@@ -121,6 +166,9 @@ int main()
 
 	// Define a number of trees created on the fly with a predefined function
 	third_testing_run();
+
+	// Create a tree and export to xml
+	fourth_testing_run();
 
 
 	_CrtCheckMemory();

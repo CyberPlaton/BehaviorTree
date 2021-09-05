@@ -16,9 +16,19 @@ public:
 	{
 	}
 
+	void exportToXML(tinyxml2::XMLElement*) override
+	{
+		// Nothing to export.
+	}
+
 	bool hasBlackboard() override
 	{
 		return false;
+	}
+
+	void setBlackboard(BTBlackboard*) override
+	{
+		// Nothing to do.
 	}
 
 	BTBlackboard* getBlackboard() override
@@ -106,6 +116,11 @@ public:
 		return m_Name;
 	}
 
+
+	std::string type() override
+	{
+		return "BTInverter";
+	}
 
 	void freeMemory() override
 	{

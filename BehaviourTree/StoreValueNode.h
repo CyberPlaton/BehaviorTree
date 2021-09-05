@@ -6,10 +6,9 @@
 class StoreValueNode : public BTAction
 {
 public:
-	StoreValueNode(std::string name, BTBlackboard* bb) :
-		BTAction(name), blackboard(bb)
+	StoreValueNode(std::string name) :
+		BTAction(name)
 	{
-
 	}
 
 	~StoreValueNode()
@@ -20,9 +19,26 @@ public:
 		store_double_value = 0;
 	}
 
+	void exportToXML(tinyxml2::XMLElement* elem) override final
+	{
+		if (blackboard)
+		{
+			elem->SetAttribute("blackboard", true);
+		}
+		else
+		{
+			elem->SetAttribute("blackboard", false);
+		}
+	}
+
 	bool hasBlackboard() override
 	{
 		return true;
+	}
+
+	void setBlackboard(BTBlackboard* b) override
+	{
+		blackboard = b;
 	}
 
 	BTBlackboard* getBlackboard() override
@@ -46,6 +62,10 @@ public:
 	}
 
 
+	std::string type() override
+	{
+		return "StoreValueNode";
+	}
 
 	BTBlackboard* blackboard = 0;
 	

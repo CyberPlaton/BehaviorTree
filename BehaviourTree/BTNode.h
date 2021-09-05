@@ -32,12 +32,21 @@ public:
 	virtual void addChild(BTNode*) = 0;
 	virtual void removeChild(std::string) = 0;
 	virtual void removeFirstChild() = 0;
-	virtual bool hasBlackboard() = 0;
-	virtual BTBlackboard* getBlackboard() = 0;
 	virtual void freeMemory() = 0;
+
+	virtual bool hasBlackboard() = 0;
+	virtual void setBlackboard(BTBlackboard*) = 0;
+	virtual BTBlackboard* getBlackboard() = 0;
 
 	/*
 	* General Node information.
 	*/
 	virtual std::string name() = 0;
+	virtual std::string type() = 0;
+
+
+	/*
+	* Export/Import to XML
+	*/
+	virtual void exportToXML(tinyxml2::XMLElement*) = 0;
 };

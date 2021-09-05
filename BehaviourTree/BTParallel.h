@@ -24,9 +24,43 @@ public:
 	{
 	}
 
+	void exportToXML(tinyxml2::XMLElement* elem) override final
+	{
+		std::string success = "none";
+		std::string fail = "none";
+
+		switch (m_SuccessPolicy)
+		{
+		case Policy::Require_All:
+			success = "require_all";
+			break;
+		case Policy::Require_One:
+			success = "require_one";
+			break;
+		}
+
+		switch (m_FailPolicy)
+		{
+		case Policy::Require_All:
+			fail = "require_all";
+			break;
+		case Policy::Require_One:
+			fail = "require_one";
+			break;
+		}
+
+		elem->SetAttribute("policy_success", success.c_str());
+		elem->SetAttribute("policy_fail", fail.c_str());
+	}
+
 	bool hasBlackboard() override
 	{
 		return false;
+	}
+
+	void setBlackboard(BTBlackboard*) override
+	{
+		// Nothing to do.
 	}
 
 	BTBlackboard* getBlackboard() override
@@ -165,6 +199,10 @@ public:
 		return m_Name;
 	}
 
+	std::string type() override
+	{
+		return "BTParallel";
+	}
 
 	void freeMemory() override
 	{

@@ -37,6 +37,43 @@ public:
 		m_Granularity = (Granularity)0;
 	}
 
+	void exportToXML(tinyxml2::XMLElement* elem) final
+	{
+		std::string granularity = "none";
+		std::string policy = "none";
+		double cond = m_Condition;
+
+		switch (m_Granularity)
+		{
+		case Granularity::Microseconds:
+			granularity = "microseconds";
+			break;
+
+		case Granularity::Seconds:
+			granularity = "seconds";
+			break;
+
+		case Granularity::Milliseconds:
+			granularity = "milliseconds";
+			break;
+		}
+
+		switch (m_Policy)
+		{
+		case Policy::Greater:
+			policy = "greater";
+			break;
+
+		case Policy::Smaller:
+			policy = "smaller";
+			break;
+		}
+
+		elem->SetAttribute("granularity", granularity.c_str());
+		elem->SetAttribute("policy", policy.c_str());
+		elem->SetAttribute("condition", cond);
+	}
+
 	BTNodeResult checkCondition() override final
 	{
 		using namespace std;
@@ -133,6 +170,10 @@ public:
 		return BTNodeResult::FAILURE;
 	}
 
+	std::string type() override
+	{
+		return "BTTimer";
+	}
 
 private:
 

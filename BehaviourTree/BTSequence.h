@@ -17,10 +17,19 @@ public:
 	{
 	}
 
+	void exportToXML(tinyxml2::XMLElement*) override
+	{
+		// Nothing to export.
+	}
 
 	bool hasBlackboard() override
 	{
 		return false;
+	}
+
+	void setBlackboard(BTBlackboard*) override
+	{
+		// Nothing to do.
 	}
 
 	BTBlackboard* getBlackboard() override
@@ -29,7 +38,7 @@ public:
 	}
 
 
-	BTNodeResult tick() override
+	BTNodeResult tick() override 
 	{
 		for (auto& kid : m_Children)
 		{
@@ -60,7 +69,7 @@ public:
 	}
 
 
-	BTNode* child(std::string name) override
+	BTNode* child(std::string name) override 
 	{
 		for (auto& kid : m_Children)
 		{
@@ -74,13 +83,16 @@ public:
 	}
 
 
-	std::map<int, BTNode*>  children() override
+	std::map<int, BTNode*>  children() override 
 	{
 		return m_Children;
 	}
 
 
-	void addChild(BTNode* node) override
+	/*
+	* Add a child to this node.
+	*/
+	void addChild(BTNode* node) override 
 	{
 		m_Children.try_emplace(m_NextNodeIndex, node);
 
@@ -90,7 +102,7 @@ public:
 	}
 
 
-	void removeChild(std::string name) override
+	void removeChild(std::string name) override 
 	{
 		int location = 0;
 
@@ -108,7 +120,7 @@ public:
 	}
 
 
-	void removeFirstChild() override
+	void removeFirstChild() override 
 	{
 		if (!m_Children.empty())
 		{
@@ -120,11 +132,15 @@ public:
 	}
 
 
-	std::string name() override
+	std::string name() override 
 	{
 		return m_Name;
 	}
 
+	std::string type() override
+	{
+		return "BTSequence";
+	}
 
 	void freeMemory() override
 	{

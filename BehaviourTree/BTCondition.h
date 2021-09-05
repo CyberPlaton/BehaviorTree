@@ -15,9 +15,19 @@ public:
 	{
 	}
 
+	void exportToXML(tinyxml2::XMLElement*) override
+	{
+		// Nothing to export.
+	}
+
 	bool hasBlackboard() override
 	{
 		return false;
+	}
+
+	void setBlackboard(BTBlackboard*) override
+	{
+		// Nothing to do.
 	}
 
 	BTBlackboard* getBlackboard() override
@@ -87,6 +97,11 @@ public:
 	std::string name() override
 	{
 		return m_Name;
+	}
+
+	std::string type() override
+	{
+		return "BTCondition";
 	}
 
 	void freeMemory() override

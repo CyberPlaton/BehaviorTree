@@ -42,6 +42,22 @@ public:
 		m_Root = node;
 	}
 
+	BTNode* getRoot()
+	{
+		return m_Root;
+	}
+
+
+	BTNode* findNode(const std::string& name)
+	{
+		for (auto& n : m_TreeNodes)
+		{
+			if (n->name().compare(name) == 0) return n;
+		}
+
+		return nullptr;
+	}
+
 
 private:
 
