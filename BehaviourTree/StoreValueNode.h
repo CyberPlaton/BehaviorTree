@@ -24,10 +24,14 @@ public:
 		if (blackboard)
 		{
 			elem->SetAttribute("blackboard", true);
+			elem->SetAttribute("store_string_value", store_string_value.c_str());
+			elem->SetAttribute("store_double_value", store_double_value);
 		}
 		else
 		{
 			elem->SetAttribute("blackboard", false);
+			elem->SetAttribute("store_string_value", store_string_value.c_str());
+			elem->SetAttribute("store_double_value", store_double_value);
 		}
 	}
 
